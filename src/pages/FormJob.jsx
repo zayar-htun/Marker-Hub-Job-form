@@ -33,12 +33,16 @@ export default function FormJob() {
     const [nrcbackBase, setnrcbackBase] = useState("");
     const [policeCerBase, setPoliceCerBase] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const { guid } = useParams();
 
+    
     const nameInput = useRef();
     const ageInput = useRef();
     const emailInput = useRef();
     const phoneInput = useRef();
+    const genderInput = useRef();
+    const religionInput = useRef();
+    const nationInput = useRef();
+    const maritalInput = useRef();
     const addressInput = useRef();
     const skillsInput = useRef();
     const eduInput = useRef();
@@ -152,6 +156,14 @@ export default function FormJob() {
                                 emailInput.current.value.trim();
                             const phoneBackend =
                                 phoneInput.current.value.trim();
+                            const genderBackend =
+                                genderInput.current.value.trim();
+                            const religionBackend =
+                                religionInput.current.value.trim();
+                            const nationBackend =
+                                nationInput.current.value.trim();
+                            const maritalBackend =
+                                maritalInput.current.value.trim();
                             const addressBackend =
                                 addressInput.current.value.trim();
                             const skillsBackend =
@@ -165,6 +177,10 @@ export default function FormJob() {
                                 !ageBackend ||
                                 !emailBackend ||
                                 !phoneBackend ||
+                                !genderBackend ||
+                                !religionBackend ||
+                                !nationBackend ||
+                                !maritalBackend ||
                                 !addressBackend ||
                                 !skillsBackend ||
                                 !eduBackend ||
@@ -187,6 +203,10 @@ export default function FormJob() {
                                     ageBackend,
                                     emailBackend,
                                     phoneBackend,
+                                    genderBackend,
+                                    religionBackend,
+                                    nationBackend,
+                                    maritalBackend,
                                     skillsBackend,
                                     eduBackend,
                                     guid,
@@ -203,7 +223,9 @@ export default function FormJob() {
                                 } else if (result) {
                                     navigate("/success");
                                 } else {
-                                    setErrorMessage("Job Apply failed. Please try again later.");
+                                    setErrorMessage(
+                                        "Job Apply failed. Please try again later."
+                                    );
                                 }
                             })();
                         }}
@@ -214,6 +236,17 @@ export default function FormJob() {
                             alignItems: "center",
                         }}
                     >
+                        <Typography sx={{ m: 2 }} variant="h5">
+                            <span style={{ fontWeight: 700 }}>Title :</span>{" "}
+                            {jobName}
+                        </Typography>
+                        <Typography sx={{ mx: 2, mb: 3 }} variant="h6">
+                            <span style={{ fontWeight: 650 }}>
+                                Description :
+                            </span>{" "}
+                            {jobDescription}
+                        </Typography>
+                        <Divider sx={{ mx: 4, my: 1 }} />
                         <IconButton
                             onClick={changePhoto}
                             onChange={convertToBase64}
@@ -231,17 +264,6 @@ export default function FormJob() {
                                 p
                             </Avatar>
                         </IconButton>
-                        <Typography sx={{ m: 2 }} variant="h5">
-                            <span style={{ fontWeight: 700 }}>Title :</span>{" "}
-                            {jobName}
-                        </Typography>
-                        <Typography sx={{ mx: 2, mb: 3 }} variant="h6">
-                            <span style={{ fontWeight: 650 }}>
-                                Description :
-                            </span>{" "}
-                            {jobDescription}
-                        </Typography>
-                        <Divider sx={{ mx: 4, my: 1 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <OutlinedInput
@@ -256,13 +278,14 @@ export default function FormJob() {
                                 <OutlinedInput
                                     required
                                     inputRef={ageInput}
-                                    placeholder="Age"
+                                    placeholder="Date of Birth"
                                     fullWidth={true}
-                                    inputProps={{ type: "number" }}
+                                    inputProps={{ type: "date" }} // Set the type to "date" for date input
                                     sx={{ mb: 3 }}
                                 />
                             </Grid>
                         </Grid>
+
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <OutlinedInput
@@ -280,6 +303,47 @@ export default function FormJob() {
                                     placeholder="Phone Number"
                                     fullWidth={true}
                                     inputProps={{ type: "number" }}
+                                    sx={{ mb: 3 }}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <OutlinedInput
+                                    required
+                                    inputRef={genderInput}
+                                    placeholder="Gender"
+                                    fullWidth={true}
+                                    sx={{ mb: 2 }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <OutlinedInput
+                                    required
+                                    inputRef={religionInput}
+                                    placeholder="Religion"
+                                    fullWidth={true}
+                                    sx={{ mb: 3 }}
+                                />
+                            </Grid>
+                        </Grid>
+
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <OutlinedInput
+                                    required
+                                    inputRef={nationInput}
+                                    placeholder="Nation"
+                                    fullWidth={true}
+                                    sx={{ mb: 2 }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <OutlinedInput
+                                    required
+                                    inputRef={maritalInput}
+                                    placeholder="Marital Status"
+                                    fullWidth={true}
                                     sx={{ mb: 3 }}
                                 />
                             </Grid>
@@ -312,6 +376,7 @@ export default function FormJob() {
                             inputRef={motivationInput}
                             placeholder="Motivation"
                             fullWidth={true}
+                            multiline={true}
                             sx={{ mb: 3 }}
                         />
 
@@ -434,7 +499,6 @@ export default function FormJob() {
                                 borderRadius: "50px",
                                 bgcolor: "#216082",
                             }}
-                            // fullWidth={true}
                         >
                             Apply
                         </Button>

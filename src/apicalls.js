@@ -1,5 +1,7 @@
 const api = "https://dev.gigagates.com/job-applications-backend";
 
+// https://dev.gigagates.com/job-applications-backend/v1/job/jobForm/listAllShop
+
 export async function getalljobs() {
     const res = await fetch(`${api}/v1/job/jobForm/listAllShop`);
     if (!res.ok) return false;
@@ -17,6 +19,10 @@ export async function getApplyJob(
     age,
     email,
     phone,
+    genderBackend,
+    religionBackend,
+    nationBackend,
+    maritalBackend,
     skills,
     edu,
     jobGuid,
@@ -38,6 +44,10 @@ export async function getApplyJob(
         education_level: edu,
         jobGuid: jobGuid,
         motivation: motivation,
+        gender:genderBackend,
+        nation: nationBackend,
+        religion: religionBackend,
+        marital_status: maritalBackend,
         nrc: "-",
         police_certification: policeCer,
         photo: photo,
@@ -46,7 +56,7 @@ export async function getApplyJob(
         back_nrc: nrcBack,
     };
 
-    const res = await fetch(`${api}/v1/job/jobForm`, {
+    const res = await fetch(`${api}/v1/job/jobForm/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -21,9 +21,6 @@ Welcome to the QuickQ HR Management System - Job Placement Section GitHub reposi
 - **Overtime and Double Time Calculation:**
 - Seamlessly handles overtime and double time calculations.
 
-- **Custom Mathematical Formulas:**
-  - Users have the flexibility to add and customize mathematical formulas to meet specific requirements.
-
 - **Part-Time Wage Calculation:**
   - Automatic calculation of part-time wages.
 
